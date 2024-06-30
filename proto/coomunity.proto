@@ -49,6 +49,8 @@ message Groups{
 message JoinLeave{
     GroupId groupId = 1;
     string userId = 2;
+    string role = 3;
+    string joinedAt = 4;
 }
 
 message UserRole{
