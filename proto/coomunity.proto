@@ -12,7 +12,7 @@ service CommunityService {
     rpc DeleteGroup(GroupId) returns (Status){}
     rpc GetAllGroups(Req) returns (Groups){}
     rpc JoinGroupUser(JoinLeave) returns (Status){}
-    rpc LeaveGroupUse(JoinLeave) returns (Status){}
+    rpc LeaveGroupUser(JoinLeave) returns (Status){}
     rpc UpdateGroupMeber(UserRole) returns(Status){}
     rpc CreatePost(Post) returns(Status){}
     rpc UpdatePost(Post) returns(Status){}
