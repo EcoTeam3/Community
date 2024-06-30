@@ -4,13 +4,13 @@ proto-gen:
 	./script/gen-proto.sh ${CURRENT_DIR}
 
 exp:
-	export DBURL='postgres://macbookpro:1111@localhost:5432/lesson46?sslmode=disable'
+	export DBURL='postgres://macbookpro:1111@localhost:5432/communityservice?sslmode=disable'
 
 mig-up:
-	migrate -path migrations -database 'postgres://macbookpro:1111@localhost:5432/lesson46?sslmode=disable' -verbose up
+	migrate -path storage/migrations -database 'postgres://macbookpro:1111@localhost:5432/communityservice?sslmode=disable' -verbose up
 
 mig-down:
-	migrate -path migrations -database ${DBURL} -verbose down
+	migrate -path storage/migrations -database ${DBURL} -verbose down
 
 mig-create:
 	migrate create -ext sql -dir storage/migrations -seq create_tables2
