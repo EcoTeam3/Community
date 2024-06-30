@@ -25,7 +25,7 @@ const (
 	CommunityService_DeleteGroup_FullMethodName        = "/community.CommunityService/DeleteGroup"
 	CommunityService_GetAllGroups_FullMethodName       = "/community.CommunityService/GetAllGroups"
 	CommunityService_JoinGroupUser_FullMethodName      = "/community.CommunityService/JoinGroupUser"
-	CommunityService_LeaveGroupUse_FullMethodName      = "/community.CommunityService/LeaveGroupUse"
+	CommunityService_LeaveGroupUser_FullMethodName     = "/community.CommunityService/LeaveGroupUser"
 	CommunityService_UpdateGroupMeber_FullMethodName   = "/community.CommunityService/UpdateGroupMeber"
 	CommunityService_CreatePost_FullMethodName         = "/community.CommunityService/CreatePost"
 	CommunityService_UpdatePost_FullMethodName         = "/community.CommunityService/UpdatePost"
@@ -46,7 +46,7 @@ type CommunityServiceClient interface {
 	DeleteGroup(ctx context.Context, in *GroupId, opts ...grpc.CallOption) (*Status, error)
 	GetAllGroups(ctx context.Context, in *Req, opts ...grpc.CallOption) (*Groups, error)
 	JoinGroupUser(ctx context.Context, in *JoinLeave, opts ...grpc.CallOption) (*Status, error)
-	LeaveGroupUse(ctx context.Context, in *JoinLeave, opts ...grpc.CallOption) (*Status, error)
+	LeaveGroupUser(ctx context.Context, in *JoinLeave, opts ...grpc.CallOption) (*Status, error)
 	UpdateGroupMeber(ctx context.Context, in *UserRole, opts ...grpc.CallOption) (*Status, error)
 	CreatePost(ctx context.Context, in *Post, opts ...grpc.CallOption) (*Status, error)
 	UpdatePost(ctx context.Context, in *Post, opts ...grpc.CallOption) (*Status, error)
@@ -125,10 +125,10 @@ func (c *communityServiceClient) JoinGroupUser(ctx context.Context, in *JoinLeav
 	return out, nil
 }
 
-func (c *communityServiceClient) LeaveGroupUse(ctx context.Context, in *JoinLeave, opts ...grpc.CallOption) (*Status, error) {
+func (c *communityServiceClient) LeaveGroupUser(ctx context.Context, in *JoinLeave, opts ...grpc.CallOption) (*Status, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Status)
-	err := c.cc.Invoke(ctx, CommunityService_LeaveGroupUse_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, CommunityService_LeaveGroupUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -225,7 +225,7 @@ type CommunityServiceServer interface {
 	DeleteGroup(context.Context, *GroupId) (*Status, error)
 	GetAllGroups(context.Context, *Req) (*Groups, error)
 	JoinGroupUser(context.Context, *JoinLeave) (*Status, error)
-	LeaveGroupUse(context.Context, *JoinLeave) (*Status, error)
+	LeaveGroupUser(context.Context, *JoinLeave) (*Status, error)
 	UpdateGroupMeber(context.Context, *UserRole) (*Status, error)
 	CreatePost(context.Context, *Post) (*Status, error)
 	UpdatePost(context.Context, *Post) (*Status, error)
@@ -259,8 +259,8 @@ func (UnimplementedCommunityServiceServer) GetAllGroups(context.Context, *Req) (
 func (UnimplementedCommunityServiceServer) JoinGroupUser(context.Context, *JoinLeave) (*Status, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method JoinGroupUser not implemented")
 }
-func (UnimplementedCommunityServiceServer) LeaveGroupUse(context.Context, *JoinLeave) (*Status, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method LeaveGroupUse not implemented")
+func (UnimplementedCommunityServiceServer) LeaveGroupUser(context.Context, *JoinLeave) (*Status, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method LeaveGroupUser not implemented")
 }
 func (UnimplementedCommunityServiceServer) UpdateGroupMeber(context.Context, *UserRole) (*Status, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateGroupMeber not implemented")
@@ -407,20 +407,20 @@ func _CommunityService_JoinGroupUser_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CommunityService_LeaveGroupUse_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _CommunityService_LeaveGroupUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(JoinLeave)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(CommunityServiceServer).LeaveGroupUse(ctx, in)
+		return srv.(CommunityServiceServer).LeaveGroupUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: CommunityService_LeaveGroupUse_FullMethodName,
+		FullMethod: CommunityService_LeaveGroupUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommunityServiceServer).LeaveGroupUse(ctx, req.(*JoinLeave))
+		return srv.(CommunityServiceServer).LeaveGroupUser(ctx, req.(*JoinLeave))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -601,8 +601,8 @@ var CommunityService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _CommunityService_JoinGroupUser_Handler,
 		},
 		{
-			MethodName: "LeaveGroupUse",
-			Handler:    _CommunityService_LeaveGroupUse_Handler,
+			MethodName: "LeaveGroupUser",
+			Handler:    _CommunityService_LeaveGroupUser_Handler,
 		},
 		{
 			MethodName: "UpdateGroupMeber",
