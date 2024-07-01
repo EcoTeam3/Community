@@ -20,7 +20,7 @@ func NewCommunityRepo(db *sql.DB) *NewCommunity {
 
 func (C *NewCommunity) CreateGroup(group *pb.Group) (*pb.Status, error) {
 	_, err := C.Db.Exec(`INSERT INTO
-							Groups(name, description, createdBy)
+							Groups(name, description, created_by)
 						VALUES($1, $2, $3)`,
 		group.Name, group.Description, group.CreatedBy)
 	if err != nil {
@@ -96,7 +96,7 @@ func (C *NewCommunity) DeleteGroup(groupId *pb.GroupId) (*pb.Status, error) {
 		return nil, fmt.Errorf("invalid group ID: %w", err)
 	}
 
-	_, err = C.Db.Exec(`UPDATE groups 
+	_, err = C.Db.Exec(`UPDATE groups
 		SET deleted_at = $1
 		Where group_id = $2`, time.Now(), id)
 	if err != nil {

@@ -1,11 +1,21 @@
--- Drop all data inserted into comments table in up migration
-DELETE FROM comments WHERE comment_id IN (1, 2, 3, 4);
+-- Delete sample data from Comments table
+DELETE FROM comments
+WHERE content IN ('Comment content 1', 'Comment content 2', 'Comment content 3');
 
--- Drop all data inserted into posts table in up migration
-DELETE FROM posts WHERE post_id IN (1, 2, 3, 4);
+-- Delete sample data from Posts table
+DELETE FROM posts
+WHERE content IN ('Post content 1', 'Post content 2', 'Post content 3');
 
--- Drop all data inserted into group_members table in up migration
-DELETE FROM group_members WHERE (group_id, user_id) IN (('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 1), ('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 2), ('b5a2f1cd-5d4a-4e89-a423-8990b49a4e9f', 3), ('75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 1), ('75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 3));
+-- Delete sample data from Group Members table
+DELETE FROM group_members
+WHERE user_id IN ((SELECT user_id FROM users WHERE username='user1'), 
+                  (SELECT user_id FROM users WHERE username='user2'), 
+                  (SELECT user_id FROM users WHERE username='user3'));
 
--- Drop all data inserted into groups table in up migration
-DELETE FROM groups WHERE group_id IN ('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 'b5a2f1cd-5d4a-4e89-a423-8990b49a4e9f', '75dc7bca-6e37-4ec8-a518-4b8a0a9b6893');
+-- Delete sample data from Groups table
+DELETE FROM groups
+WHERE name IN ('Group 1', 'Group 2');
+
+-- Delete sample data from Users table
+DELETE FROM users
+WHERE username IN ('user1', 'user2', 'user3');
