@@ -1,31 +1,33 @@
+-- insert_table_up.sql
+
 -- Insert initial data into groups table
-INSERT INTO groups (group_id, name, description, created_by, created_at)
-VALUES 
-    ('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 'Group 1', 'Description of Group 1', 1, CURRENT_TIMESTAMP),
-    ('b5a2f1cd-5d4a-4e89-a423-8990b49a4e9f', 'Group 2', 'Description of Group 2', 2, CURRENT_TIMESTAMP),
-    ('75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 'Group 3', 'Description of Group 3', 1, CURRENT_TIMESTAMP);
+INSERT INTO groups (name, description, created_by)
+VALUES
+('Tech Enthusiasts', 'A group for people who love technology.', gen_random_uuid()),
+('Book Club', 'A group for book lovers.', gen_random_uuid()),
+('Fitness Freaks', 'A group for fitness enthusiasts.', gen_random_uuid());
 
 -- Insert initial data into group_members table
-INSERT INTO group_members (group_id, user_id, role, joined_at)
+INSERT INTO group_members (group_id, user_id, role)
 VALUES
-    ('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 1, 'admin', CURRENT_TIMESTAMP),
-    ('f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 2, 'member', CURRENT_TIMESTAMP),
-    ('b5a2f1cd-5d4a-4e89-a423-8990b49a4e9f', 3, 'moderator', CURRENT_TIMESTAMP),
-    ('75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 1, 'member', CURRENT_TIMESTAMP),
-    ('75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 3, 'admin', CURRENT_TIMESTAMP);
+((SELECT group_id FROM groups WHERE name='Tech Enthusiasts'), gen_random_uuid(), 'admin'),
+((SELECT group_id FROM groups WHERE name='Tech Enthusiasts'), gen_random_uuid(), 'member'),
+((SELECT group_id FROM groups WHERE name='Book Club'), gen_random_uuid(), 'admin'),
+((SELECT group_id FROM groups WHERE name='Book Club'), gen_random_uuid(), 'member'),
+((SELECT group_id FROM groups WHERE name='Fitness Freaks'), gen_random_uuid(), 'admin'),
+((SELECT group_id FROM groups WHERE name='Fitness Freaks'), gen_random_uuid(), 'member');
 
 -- Insert initial data into posts table
-INSERT INTO posts (post_id, group_id, user_id, content, created_at)
+INSERT INTO posts (group_id, user_id, content)
 VALUES
-    (1, 'f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 1, 'Post 1 in Group 1', CURRENT_TIMESTAMP),
-    (2, 'f7ddcc9f-2924-4b8a-bd0e-7e6d6bb3a0c1', 2, 'Post 2 in Group 1', CURRENT_TIMESTAMP),
-    (3, 'b5a2f1cd-5d4a-4e89-a423-8990b49a4e9f', 3, 'Post 1 in Group 2', CURRENT_TIMESTAMP),
-    (4, '75dc7bca-6e37-4ec8-a518-4b8a0a9b6893', 1, 'Post 1 in Group 3', CURRENT_TIMESTAMP);
+((SELECT group_id FROM groups WHERE name='Tech Enthusiasts'), gen_random_uuid(), 'What do you think about the new AI technology?'),
+((SELECT group_id FROM groups WHERE name='Book Club'), gen_random_uuid(), 'Has anyone read the latest thriller by John Grisham?'),
+((SELECT group_id FROM groups WHERE name='Fitness Freaks'), gen_random_uuid(), 'Share your favorite workout routines.');
 
 -- Insert initial data into comments table
-INSERT INTO comments (comment_id, post_id, user_id, content, created_at)
+INSERT INTO comments (post_id, user_id, content)
 VALUES
-    (1, 1, 1, 'Comment 1 on Post 1', CURRENT_TIMESTAMP),
-    (2, 1, 2, 'Comment 2 on Post 1', CURRENT_TIMESTAMP),
-    (3, 2, 3, 'Comment 1 on Post 2', CURRENT_TIMESTAMP),
-    (4, 3, 1, 'Comment 1 on Post 1 in Group 2', CURRENT_TIMESTAMP);
+((SELECT post_id FROM posts WHERE content='What do you think about the new AI technology?'), gen_random_uuid(), 'I think it''s revolutionary!'),
+((SELECT post_id FROM posts WHERE content='What do you think about the new AI technology?'), gen_random_uuid(), 'AI will change the world as we know it.'),
+((SELECT post_id FROM posts WHERE content='Has anyone read the latest thriller by John Grisham?'), gen_random_uuid(), 'Yes, it was a real page-turner!'),
+((SELECT post_id FROM posts WHERE content='Share your favorite workout routines.'), gen_random_uuid(), 'I love doing HIIT workouts.');
