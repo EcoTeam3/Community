@@ -31,7 +31,7 @@ message GroupId{
 
 
 message Group{
-    GroupId groupId = 1;
+    string groupId = 1;
     string name = 2;
     string description = 3;
     string createdBy = 4;
@@ -47,14 +47,14 @@ message Groups{
 }
 
 message JoinLeave{
-    GroupId groupId = 1;
+    string groupId = 1;
     string userId = 2;
     string role = 3;
     string joinedAt = 4;
 }
 
 message UserRole{
-    GroupId GroupId = 1;
+    string GroupId = 1;
     string userId = 2;
     string role = 3;
 }
@@ -64,15 +64,15 @@ message PostId {
 }
 
 message Post{
-    PostId postId = 1;
-    GroupId groupId = 2;
+    string postId = 1;
+    string groupId = 2;
     string userId = 3;
     string content = 4;
     string createdAt = 5;
 }
 
 message GroupPost{
-    GroupId groupId = 1;
+    string groupId = 1;
     PostId postId = 2;
 }
 
@@ -82,7 +82,7 @@ message CommenId{
 }
 
 message Comment{
-    CommenId commentId = 1;
+    string commentId = 1;
     PostId postId = 2;
     string userId = 3;
     string content = 4;
@@ -91,6 +91,6 @@ message Comment{
 
 
 message PostComment{
-    PostId postId = 1;
+    string postId = 1;
     CommenId commentId = 2;
 }
