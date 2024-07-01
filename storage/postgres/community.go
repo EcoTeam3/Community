@@ -211,7 +211,7 @@ func (C *NewCommunity) UpdatePost(post *pb.Post) (*pb.Status, error) {
 	query = fmt.Sprintf(" WHERE post_id = $%d", n)
 	arr = append(arr, post.PostId)
 
-	_,err := C.Db.Exec(query,arr...)
+  _,err := C.Db.Exec(query,arr...)
 
 	if err != nil{
 		return &pb.Status{
@@ -255,4 +255,25 @@ func (C *NewCommunity) GetGroupPost(groupPost *pb.GroupPost)(*pb.Post,error){
 		return nil,err
 	}
 	return &post,nil
+}
+
+func (C *NewCommunity) CreatePostComments(comment *pb.Comment) (*pb.Status, error){
+	_, err := C.Db.Exec(`INSERT INTO Comments(comment_id, post_id, user_id, content) VALUES($1, $2, $3, $4)`, 
+							comment.CommentId, comment.PostId, comment.UserId, comment.Content)
+	if err != nil{
+		return &pb.Status{Status: false}, err
+	}
+	return &pb.Status{Status: true}, nil
+}
+
+
+func (C *NewCommunity) GetPostComments(postComment *pb.PostComment) (*pb.Comment, error){
+	comment := &pb.Comment{}
+	err := C.Db.QueryRow(`SELECT comment_id, post_id, user_id, content
+							FROM
+						Comments
+							WHERE comment_id = $1, post_id = $2`, 
+						postComment.CommentId, postComment.PostId).Scan(
+							&comment.CommentId, &comment.PostId, &comment.PostId, &comment.Content)
+	return comment, err
 }
