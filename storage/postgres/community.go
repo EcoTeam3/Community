@@ -33,7 +33,7 @@ func (C *NewCommunity) GetGroup(groupId *pb.GroupId) (*pb.Group, error) {
 	group := pb.Group{}
 	err := C.Db.QueryRow(`SELECT group_id, name, description, created_by, created_at
        FROM groups
-       WHERE group_id = $1 AND deleted_at IS NULL`, groupId).Scan(&group.GroupId, &group.Name, &group.Description, &group.CreatedBy, &group.CreatedAt)
+       WHERE group_id = $1 `, groupId.GroupId).Scan(&group.GroupId, &group.Name, &group.Description, &group.CreatedBy, &group.CreatedAt)
 	if err != nil {
 		return nil, err
 	}
@@ -164,7 +164,7 @@ func (C *NewCommunity) UpdateGroupMeber(userRole *pb.UserRole) (*pb.Status, erro
 		Status: true,
 	}, nil
 }
-
+////////////////////////////////////////////////////////////////////////
 func (C *NewCommunity) CreatePost(post *pb.Post) (*pb.Status, error) {
 	_, err := C.Db.Exec("INSERT INTO Posts(group_id,user_id,content,created_at) VALUES($1,$2,$3,$4)",
 		post.GroupId, post.UserId, post.Content, time.Now())
