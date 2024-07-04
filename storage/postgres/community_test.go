@@ -1,7 +1,7 @@
 package postgres
 
 import (
-	pb "community/generated"
+	pb "community/generated/community"
 	"community/storage"
 	"database/sql"
 	"errors"
@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func CommunnityRepo(t *testing.T) *NewCommunity{
+func CommunnityRepo(t *testing.T) *NewCommunity {
 	db, err := storage.Connect()
 	if err != nil {
 		return nil
@@ -47,11 +47,11 @@ func TestGetGroup(t *testing.T) {
 func TestUpdateGroup(t *testing.T) {
 	com := CommunnityRepo(t)
 	group := pb.Group{
-		GroupId: "",
-		Name: "",
+		GroupId:     "",
+		Name:        "",
 		Description: "",
-		CreatedBy: "",
-		CreatedAt: "",
+		CreatedBy:   "",
+		CreatedAt:   "",
 	}
 	resp, err := com.UpdateGroup(&group)
 	if err != nil {
@@ -106,18 +106,16 @@ func TestGetAllGroups(t *testing.T) {
 		panic(err)
 	}
 
-	case1 := pb.Status{
-		
-	}
+	case1 := pb.Status{}
 }
 
 func TestJoinGroupUser(t *testing.T) {
 	com := CommunnityRepo(t)
 
 	user := pb.JoinLeave{
-		GroupId: "",
-		UserId: "",
-		Role: "",
+		GroupId:  "",
+		UserId:   "",
+		Role:     "",
 		JoinedAt: "",
 	}
 
@@ -147,9 +145,9 @@ func TestLeaveGroupUser(t *testing.T) {
 	com := CommunnityRepo(t)
 
 	user := pb.JoinLeave{
-		GroupId: "",
-		UserId: "",
-		Role: "",
+		GroupId:  "",
+		UserId:   "",
+		Role:     "",
 		JoinedAt: "",
 	}
 
@@ -179,8 +177,8 @@ func TestUpdateGroupMeber(t *testing.T) {
 
 	userRole := pb.UserRole{
 		GroupId: "",
-		UserId: "",
-		Role: "",
+		UserId:  "",
+		Role:    "",
 	}
 
 	resp, err := com.UpdateGroupMeber(&userRole)

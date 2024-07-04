@@ -1,8 +1,11 @@
 package postgres
 
 import (
-	pb "community/generated"
+	pb "community/generated/community"
+	"community/generated/user"
+	"context"
 	"database/sql"
+	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -11,6 +14,7 @@ import (
 
 type NewCommunity struct {
 	Db *sql.DB
+	UserService user.UserServiceClient
 }
 
 func NewCommunityRepo(db *sql.DB) *NewCommunity {
@@ -107,7 +111,16 @@ func (C *NewCommunity) GetAllGroups(req *pb.Req) (*pb.Groups, error) {
 }
 
 func (C *NewCommunity) JoinGroupUser(IDs *pb.JoinLeave) (*pb.Status, error) {
-
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: IDs.UserId})
+	if user == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("user not found")
+	}
+	group, err := C.GetGroup(&pb.GroupId{GroupId: IDs.GroupId})
+	if group == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("group not found")
+	}
 	rows, err := C.Db.Exec(`
     INSERT 
     INTO 
@@ -137,7 +150,17 @@ func (C *NewCommunity) JoinGroupUser(IDs *pb.JoinLeave) (*pb.Status, error) {
 }
 
 func (C *NewCommunity) LeaveGroupUser(joinLeave *pb.JoinLeave) (*pb.Status, error) {
-	_, err := C.Db.Exec("INSERT INTO Group_Members(group_id,user_id,role) VALUES($1,$2,$3)", joinLeave.GroupId, joinLeave.UserId, joinLeave.Role)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: joinLeave.UserId})
+	if user == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("user not found")
+	}
+	group, err := C.GetGroup(&pb.GroupId{GroupId: joinLeave.GroupId})
+	if group == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("group not found")
+	}
+	_, err = C.Db.Exec("INSERT INTO Group_Members(group_id,user_id,role) VALUES($1,$2,$3)", joinLeave.GroupId, joinLeave.UserId, joinLeave.Role)
 	if err != nil {
 		return &pb.Status{
 			Status: false,
@@ -149,12 +172,22 @@ func (C *NewCommunity) LeaveGroupUser(joinLeave *pb.JoinLeave) (*pb.Status, erro
 }
 
 func (C *NewCommunity) UpdateGroupMeber(userRole *pb.UserRole) (*pb.Status, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
+	defer cancel()
+	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: userRole.UserId})
+	if user == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("user not found")
+	}
+	group, err := C.GetGroup(&pb.GroupId{GroupId: userRole.GroupId})
+	if group == nil || err != nil{
+		return &pb.Status{Status: false}, errors.New("group not found")
+	}
 	if len(userRole.GroupId) > 0 && len(userRole.UserId) > 0 && len(userRole.Role) > 0 {
 		return &pb.Status{
 			Status: false,
 		}, fmt.Errorf("not found user and group")
 	}
-	_, err := C.Db.Exec("UPDATE Group_Members SET Role = $1 WHERE group_id = $2 AND user_id = $3", userRole.Role, userRole.GroupId, userRole.UserId)
+	_, err = C.Db.Exec("UPDATE Group_Members SET Role = $1 WHERE group_id = $2 AND user_id = $3", userRole.Role, userRole.GroupId, userRole.UserId)
 	if err != nil {
 		return &pb.Status{
 			Status: false,
