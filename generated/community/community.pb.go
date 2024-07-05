@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v3.12.4
-// source: coomunity.proto
+// source: community.proto
 
 package community
 
@@ -29,7 +29,7 @@ type Req struct {
 func (x *Req) Reset() {
 	*x = Req{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[0]
+		mi := &file_community_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -42,7 +42,7 @@ func (x *Req) String() string {
 func (*Req) ProtoMessage() {}
 
 func (x *Req) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[0]
+	mi := &file_community_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *Req) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Req.ProtoReflect.Descriptor instead.
 func (*Req) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{0}
+	return file_community_proto_rawDescGZIP(), []int{0}
 }
 
 type GroupId struct {
@@ -69,7 +69,7 @@ type GroupId struct {
 func (x *GroupId) Reset() {
 	*x = GroupId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[1]
+		mi := &file_community_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -82,7 +82,7 @@ func (x *GroupId) String() string {
 func (*GroupId) ProtoMessage() {}
 
 func (x *GroupId) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[1]
+	mi := &file_community_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -95,7 +95,7 @@ func (x *GroupId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupId.ProtoReflect.Descriptor instead.
 func (*GroupId) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{1}
+	return file_community_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GroupId) GetGroupId() string {
@@ -120,7 +120,7 @@ type Group struct {
 func (x *Group) Reset() {
 	*x = Group{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[2]
+		mi := &file_community_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -133,7 +133,7 @@ func (x *Group) String() string {
 func (*Group) ProtoMessage() {}
 
 func (x *Group) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[2]
+	mi := &file_community_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -146,7 +146,7 @@ func (x *Group) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Group.ProtoReflect.Descriptor instead.
 func (*Group) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{2}
+	return file_community_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Group) GetGroupId() string {
@@ -195,7 +195,7 @@ type Status struct {
 func (x *Status) Reset() {
 	*x = Status{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[3]
+		mi := &file_community_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -208,7 +208,7 @@ func (x *Status) String() string {
 func (*Status) ProtoMessage() {}
 
 func (x *Status) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[3]
+	mi := &file_community_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -221,7 +221,7 @@ func (x *Status) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Status.ProtoReflect.Descriptor instead.
 func (*Status) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{3}
+	return file_community_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Status) GetStatus() bool {
@@ -242,7 +242,7 @@ type Groups struct {
 func (x *Groups) Reset() {
 	*x = Groups{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[4]
+		mi := &file_community_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -255,7 +255,7 @@ func (x *Groups) String() string {
 func (*Groups) ProtoMessage() {}
 
 func (x *Groups) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[4]
+	mi := &file_community_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -268,7 +268,7 @@ func (x *Groups) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Groups.ProtoReflect.Descriptor instead.
 func (*Groups) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{4}
+	return file_community_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Groups) GetGroups() []*Group {
@@ -292,7 +292,7 @@ type JoinLeave struct {
 func (x *JoinLeave) Reset() {
 	*x = JoinLeave{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[5]
+		mi := &file_community_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -305,7 +305,7 @@ func (x *JoinLeave) String() string {
 func (*JoinLeave) ProtoMessage() {}
 
 func (x *JoinLeave) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[5]
+	mi := &file_community_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -318,7 +318,7 @@ func (x *JoinLeave) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use JoinLeave.ProtoReflect.Descriptor instead.
 func (*JoinLeave) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{5}
+	return file_community_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *JoinLeave) GetGroupId() string {
@@ -362,7 +362,7 @@ type UserRole struct {
 func (x *UserRole) Reset() {
 	*x = UserRole{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[6]
+		mi := &file_community_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -375,7 +375,7 @@ func (x *UserRole) String() string {
 func (*UserRole) ProtoMessage() {}
 
 func (x *UserRole) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[6]
+	mi := &file_community_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -388,7 +388,7 @@ func (x *UserRole) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserRole.ProtoReflect.Descriptor instead.
 func (*UserRole) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{6}
+	return file_community_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UserRole) GetGroupId() string {
@@ -423,7 +423,7 @@ type PostId struct {
 func (x *PostId) Reset() {
 	*x = PostId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[7]
+		mi := &file_community_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -436,7 +436,7 @@ func (x *PostId) String() string {
 func (*PostId) ProtoMessage() {}
 
 func (x *PostId) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[7]
+	mi := &file_community_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -449,7 +449,7 @@ func (x *PostId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostId.ProtoReflect.Descriptor instead.
 func (*PostId) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{7}
+	return file_community_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *PostId) GetPostId() string {
@@ -474,7 +474,7 @@ type Post struct {
 func (x *Post) Reset() {
 	*x = Post{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[8]
+		mi := &file_community_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -487,7 +487,7 @@ func (x *Post) String() string {
 func (*Post) ProtoMessage() {}
 
 func (x *Post) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[8]
+	mi := &file_community_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -500,7 +500,7 @@ func (x *Post) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Post.ProtoReflect.Descriptor instead.
 func (*Post) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{8}
+	return file_community_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Post) GetPostId() string {
@@ -550,7 +550,7 @@ type GroupPost struct {
 func (x *GroupPost) Reset() {
 	*x = GroupPost{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[9]
+		mi := &file_community_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -563,7 +563,7 @@ func (x *GroupPost) String() string {
 func (*GroupPost) ProtoMessage() {}
 
 func (x *GroupPost) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[9]
+	mi := &file_community_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -576,7 +576,7 @@ func (x *GroupPost) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GroupPost.ProtoReflect.Descriptor instead.
 func (*GroupPost) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{9}
+	return file_community_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GroupPost) GetGroupId() string {
@@ -604,7 +604,7 @@ type CommenId struct {
 func (x *CommenId) Reset() {
 	*x = CommenId{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[10]
+		mi := &file_community_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -617,7 +617,7 @@ func (x *CommenId) String() string {
 func (*CommenId) ProtoMessage() {}
 
 func (x *CommenId) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[10]
+	mi := &file_community_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -630,7 +630,7 @@ func (x *CommenId) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommenId.ProtoReflect.Descriptor instead.
 func (*CommenId) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{10}
+	return file_community_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *CommenId) GetCommentId() string {
@@ -655,7 +655,7 @@ type Comment struct {
 func (x *Comment) Reset() {
 	*x = Comment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[11]
+		mi := &file_community_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -668,7 +668,7 @@ func (x *Comment) String() string {
 func (*Comment) ProtoMessage() {}
 
 func (x *Comment) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[11]
+	mi := &file_community_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -681,7 +681,7 @@ func (x *Comment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Comment.ProtoReflect.Descriptor instead.
 func (*Comment) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{11}
+	return file_community_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Comment) GetCommentId() string {
@@ -731,7 +731,7 @@ type PostComment struct {
 func (x *PostComment) Reset() {
 	*x = PostComment{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_coomunity_proto_msgTypes[12]
+		mi := &file_community_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -744,7 +744,7 @@ func (x *PostComment) String() string {
 func (*PostComment) ProtoMessage() {}
 
 func (x *PostComment) ProtoReflect() protoreflect.Message {
-	mi := &file_coomunity_proto_msgTypes[12]
+	mi := &file_community_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -757,7 +757,7 @@ func (x *PostComment) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PostComment.ProtoReflect.Descriptor instead.
 func (*PostComment) Descriptor() ([]byte, []int) {
-	return file_coomunity_proto_rawDescGZIP(), []int{12}
+	return file_community_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *PostComment) GetPostId() string {
@@ -774,10 +774,10 @@ func (x *PostComment) GetCommentId() string {
 	return ""
 }
 
-var File_coomunity_proto protoreflect.FileDescriptor
+var File_community_proto protoreflect.FileDescriptor
 
-var file_coomunity_proto_rawDesc = []byte{
-	0x0a, 0x0f, 0x63, 0x6f, 0x6f, 0x6d, 0x75, 0x6e, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+var file_community_proto_rawDesc = []byte{
+	0x0a, 0x0f, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x74, 0x79, 0x2e, 0x70, 0x72, 0x6f, 0x74,
 	0x6f, 0x12, 0x09, 0x63, 0x6f, 0x6d, 0x6d, 0x75, 0x6e, 0x69, 0x74, 0x79, 0x22, 0x05, 0x0a, 0x03,
 	0x52, 0x65, 0x71, 0x22, 0x23, 0x0a, 0x07, 0x47, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x12, 0x18,
 	0x0a, 0x07, 0x67, 0x72, 0x6f, 0x75, 0x70, 0x49, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
@@ -899,19 +899,19 @@ var file_coomunity_proto_rawDesc = []byte{
 }
 
 var (
-	file_coomunity_proto_rawDescOnce sync.Once
-	file_coomunity_proto_rawDescData = file_coomunity_proto_rawDesc
+	file_community_proto_rawDescOnce sync.Once
+	file_community_proto_rawDescData = file_community_proto_rawDesc
 )
 
-func file_coomunity_proto_rawDescGZIP() []byte {
-	file_coomunity_proto_rawDescOnce.Do(func() {
-		file_coomunity_proto_rawDescData = protoimpl.X.CompressGZIP(file_coomunity_proto_rawDescData)
+func file_community_proto_rawDescGZIP() []byte {
+	file_community_proto_rawDescOnce.Do(func() {
+		file_community_proto_rawDescData = protoimpl.X.CompressGZIP(file_community_proto_rawDescData)
 	})
-	return file_coomunity_proto_rawDescData
+	return file_community_proto_rawDescData
 }
 
-var file_coomunity_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
-var file_coomunity_proto_goTypes = []any{
+var file_community_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_community_proto_goTypes = []any{
 	(*Req)(nil),         // 0: community.Req
 	(*GroupId)(nil),     // 1: community.GroupId
 	(*Group)(nil),       // 2: community.Group
@@ -926,7 +926,7 @@ var file_coomunity_proto_goTypes = []any{
 	(*Comment)(nil),     // 11: community.Comment
 	(*PostComment)(nil), // 12: community.PostComment
 }
-var file_coomunity_proto_depIdxs = []int32{
+var file_community_proto_depIdxs = []int32{
 	2,  // 0: community.Groups.groups:type_name -> community.Group
 	2,  // 1: community.CommunityService.CreateGroup:input_type -> community.Group
 	1,  // 2: community.CommunityService.GetGroup:input_type -> community.GroupId
@@ -965,13 +965,13 @@ var file_coomunity_proto_depIdxs = []int32{
 	0,  // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_coomunity_proto_init() }
-func file_coomunity_proto_init() {
-	if File_coomunity_proto != nil {
+func init() { file_community_proto_init() }
+func file_community_proto_init() {
+	if File_community_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_coomunity_proto_msgTypes[0].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*Req); i {
 			case 0:
 				return &v.state
@@ -983,7 +983,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[1].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*GroupId); i {
 			case 0:
 				return &v.state
@@ -995,7 +995,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[2].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[2].Exporter = func(v any, i int) any {
 			switch v := v.(*Group); i {
 			case 0:
 				return &v.state
@@ -1007,7 +1007,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[3].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[3].Exporter = func(v any, i int) any {
 			switch v := v.(*Status); i {
 			case 0:
 				return &v.state
@@ -1019,7 +1019,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[4].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[4].Exporter = func(v any, i int) any {
 			switch v := v.(*Groups); i {
 			case 0:
 				return &v.state
@@ -1031,7 +1031,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[5].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[5].Exporter = func(v any, i int) any {
 			switch v := v.(*JoinLeave); i {
 			case 0:
 				return &v.state
@@ -1043,7 +1043,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[6].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[6].Exporter = func(v any, i int) any {
 			switch v := v.(*UserRole); i {
 			case 0:
 				return &v.state
@@ -1055,7 +1055,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[7].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[7].Exporter = func(v any, i int) any {
 			switch v := v.(*PostId); i {
 			case 0:
 				return &v.state
@@ -1067,7 +1067,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[8].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[8].Exporter = func(v any, i int) any {
 			switch v := v.(*Post); i {
 			case 0:
 				return &v.state
@@ -1079,7 +1079,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[9].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[9].Exporter = func(v any, i int) any {
 			switch v := v.(*GroupPost); i {
 			case 0:
 				return &v.state
@@ -1091,7 +1091,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[10].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[10].Exporter = func(v any, i int) any {
 			switch v := v.(*CommenId); i {
 			case 0:
 				return &v.state
@@ -1103,7 +1103,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[11].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[11].Exporter = func(v any, i int) any {
 			switch v := v.(*Comment); i {
 			case 0:
 				return &v.state
@@ -1115,7 +1115,7 @@ func file_coomunity_proto_init() {
 				return nil
 			}
 		}
-		file_coomunity_proto_msgTypes[12].Exporter = func(v any, i int) any {
+		file_community_proto_msgTypes[12].Exporter = func(v any, i int) any {
 			switch v := v.(*PostComment); i {
 			case 0:
 				return &v.state
@@ -1132,18 +1132,18 @@ func file_coomunity_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_coomunity_proto_rawDesc,
+			RawDescriptor: file_community_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_coomunity_proto_goTypes,
-		DependencyIndexes: file_coomunity_proto_depIdxs,
-		MessageInfos:      file_coomunity_proto_msgTypes,
+		GoTypes:           file_community_proto_goTypes,
+		DependencyIndexes: file_community_proto_depIdxs,
+		MessageInfos:      file_community_proto_msgTypes,
 	}.Build()
-	File_coomunity_proto = out.File
-	file_coomunity_proto_rawDesc = nil
-	file_coomunity_proto_goTypes = nil
-	file_coomunity_proto_depIdxs = nil
+	File_community_proto = out.File
+	file_community_proto_rawDesc = nil
+	file_community_proto_goTypes = nil
+	file_community_proto_depIdxs = nil
 }
