@@ -13,7 +13,7 @@ import (
 )
 
 type NewCommunity struct {
-	Db *sql.DB
+	Db          *sql.DB
 	UserService user.UserServiceClient
 }
 
@@ -114,11 +114,11 @@ func (C *NewCommunity) JoinGroupUser(IDs *pb.JoinLeave) (*pb.Status, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: IDs.UserId})
-	if user == nil || err != nil{
+	if user == nil || err != nil {
 		return &pb.Status{Status: false}, errors.New("user not found")
 	}
 	group, err := C.GetGroup(&pb.GroupId{GroupId: IDs.GroupId})
-	if group == nil || err != nil{
+	if group == nil || err != nil {
 		return &pb.Status{Status: false}, errors.New("group not found")
 	}
 	rows, err := C.Db.Exec(`
@@ -150,17 +150,7 @@ func (C *NewCommunity) JoinGroupUser(IDs *pb.JoinLeave) (*pb.Status, error) {
 }
 
 func (C *NewCommunity) LeaveGroupUser(joinLeave *pb.JoinLeave) (*pb.Status, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: joinLeave.UserId})
-	if user == nil || err != nil{
-		return &pb.Status{Status: false}, errors.New("user not found")
-	}
-	group, err := C.GetGroup(&pb.GroupId{GroupId: joinLeave.GroupId})
-	if group == nil || err != nil{
-		return &pb.Status{Status: false}, errors.New("group not found")
-	}
-	_, err = C.Db.Exec("INSERT INTO Group_Members(group_id,user_id,role) VALUES($1,$2,$3)", joinLeave.GroupId, joinLeave.UserId, joinLeave.Role)
+	_, err := C.Db.Exec("Update Group_Members SET deleted_at = $1 WHERE group_id = $2 and user_id = $3", time.Now(), joinLeave.GroupId, joinLeave.UserId)
 	if err != nil {
 		return &pb.Status{
 			Status: false,
@@ -172,22 +162,7 @@ func (C *NewCommunity) LeaveGroupUser(joinLeave *pb.JoinLeave) (*pb.Status, erro
 }
 
 func (C *NewCommunity) UpdateGroupMeber(userRole *pb.UserRole) (*pb.Status, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	defer cancel()
-	user, err := C.UserService.GetUser(ctx, &user.UserId{UserId: userRole.UserId})
-	if user == nil || err != nil{
-		return &pb.Status{Status: false}, errors.New("user not found")
-	}
-	group, err := C.GetGroup(&pb.GroupId{GroupId: userRole.GroupId})
-	if group == nil || err != nil{
-		return &pb.Status{Status: false}, errors.New("group not found")
-	}
-	if len(userRole.GroupId) > 0 && len(userRole.UserId) > 0 && len(userRole.Role) > 0 {
-		return &pb.Status{
-			Status: false,
-		}, fmt.Errorf("not found user and group")
-	}
-	_, err = C.Db.Exec("UPDATE Group_Members SET Role = $1 WHERE group_id = $2 AND user_id = $3", userRole.Role, userRole.GroupId, userRole.UserId)
+	_, err := C.Db.Exec("UPDATE Group_Members SET Role = $1 WHERE group_id = $2 AND user_id = $3", userRole.Role, userRole.GroupId, userRole.UserId)
 	if err != nil {
 		return &pb.Status{
 			Status: false,
@@ -197,7 +172,8 @@ func (C *NewCommunity) UpdateGroupMeber(userRole *pb.UserRole) (*pb.Status, erro
 		Status: true,
 	}, nil
 }
-////////////////////////////////////////////////////////////////////////
+
+
 func (C *NewCommunity) CreatePost(post *pb.Post) (*pb.Status, error) {
 	_, err := C.Db.Exec("INSERT INTO Posts(group_id,user_id,content,created_at) VALUES($1,$2,$3,$4)",
 		post.GroupId, post.UserId, post.Content, time.Now())
@@ -244,69 +220,68 @@ func (C *NewCommunity) UpdatePost(post *pb.Post) (*pb.Status, error) {
 	query = fmt.Sprintf(" WHERE post_id = $%d", n)
 	arr = append(arr, post.PostId)
 
-  _,err := C.Db.Exec(query,arr...)
+	_, err := C.Db.Exec(query, arr...)
 
-	if err != nil{
+	if err != nil {
 		return &pb.Status{
 			Status: false,
-		},err
+		}, err
 	}
 	return &pb.Status{
 		Status: true,
-	},nil
+	}, nil
 }
 
-func (C *NewCommunity) DeletePost(postId *pb.PostId) (*pb.Status,error){
-	_,err := C.Db.Exec("DELETE FROM Posts WHERE post_id = $1",postId)
-	if err != nil{
+func (C *NewCommunity) DeletePost(postId *pb.PostId) (*pb.Status, error) {
+	_, err := C.Db.Exec("DELETE FROM Posts WHERE post_id = $1", postId)
+	if err != nil {
 		return &pb.Status{
 			Status: false,
-		},err
+		}, err
 	}
 	return &pb.Status{
 		Status: true,
-	},nil
+	}, nil
 }
 
-func (C *NewCommunity) GetPost(postId *pb.PostId)(*pb.Post,error){
+func (C *NewCommunity) GetPost(postId *pb.PostId) (*pb.Post, error) {
 	post := pb.Post{}
-	err := C.Db.QueryRow("SELECT * FROM Posts WHERE post_id = $1",postId).Scan(
-		&post.PostId,&post.GroupId,&post.UserId,&post.Content,&post.CreatedAt,
+	err := C.Db.QueryRow("SELECT * FROM Posts WHERE post_id = $1", postId).Scan(
+		&post.PostId, &post.GroupId, &post.UserId, &post.Content, &post.CreatedAt,
 	)
-	if err != nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
-	return &post,nil
+	return &post, nil
 }
 
-func (C *NewCommunity) GetGroupPost(groupPost *pb.GroupPost)(*pb.Post,error){
+func (C *NewCommunity) GetGroupPost(groupPost *pb.GroupPost) (*pb.Post, error) {
 	post := pb.Post{}
-	err := C.Db.QueryRow("SELECT * FROM Posts WHERE post_id = $1 AND group_id = $2",groupPost.PostId,groupPost.GroupId).Scan(
-		post.PostId,post.GroupId,post.UserId,post.Content,post.CreatedAt,
+	err := C.Db.QueryRow("SELECT * FROM Posts WHERE post_id = $1 AND group_id = $2", groupPost.PostId, groupPost.GroupId).Scan(
+		post.PostId, post.GroupId, post.UserId, post.Content, post.CreatedAt,
 	)
-	if err != nil{
-		return nil,err
+	if err != nil {
+		return nil, err
 	}
-	return &post,nil
+	return &post, nil
 }
 
-func (C *NewCommunity) CreatePostComments(comment *pb.Comment) (*pb.Status, error){
-	_, err := C.Db.Exec(`INSERT INTO Comments(comment_id, post_id, user_id, content) VALUES($1, $2, $3, $4)`, 
-							comment.CommentId, comment.PostId, comment.UserId, comment.Content)
-	if err != nil{
+func (C *NewCommunity) CreatePostComments(comment *pb.Comment) (*pb.Status, error) {
+	_, err := C.Db.Exec(`INSERT INTO Comments(comment_id, post_id, user_id, content) VALUES($1, $2, $3, $4)`,
+		comment.CommentId, comment.PostId, comment.UserId, comment.Content)
+	if err != nil {
 		return &pb.Status{Status: false}, err
 	}
 	return &pb.Status{Status: true}, nil
 }
 
-
-func (C *NewCommunity) GetPostComments(postComment *pb.PostComment) (*pb.Comment, error){
+func (C *NewCommunity) GetPostComments(postComment *pb.PostComment) (*pb.Comment, error) {
 	comment := &pb.Comment{}
 	err := C.Db.QueryRow(`SELECT comment_id, post_id, user_id, content
 							FROM
 						Comments
-							WHERE comment_id = $1, post_id = $2`, 
-						postComment.CommentId, postComment.PostId).Scan(
-							&comment.CommentId, &comment.PostId, &comment.PostId, &comment.Content)
+							WHERE comment_id = $1, post_id = $2`,
+		postComment.CommentId, postComment.PostId).Scan(
+		&comment.CommentId, &comment.PostId, &comment.PostId, &comment.Content)
 	return comment, err
 }
