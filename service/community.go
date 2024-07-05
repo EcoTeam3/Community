@@ -1,7 +1,7 @@
 package service
 
 import (
-	pb "community/generated"
+	pb "community/generated/community"
 	"community/storage/postgres"
 	"context"
 )

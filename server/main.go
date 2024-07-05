@@ -2,7 +2,7 @@ package main
 
 import (
 	"community/config"
-	pb "community/generated"
+	pb "community/generated/community"
 	"community/service"
 	"community/storage"
 	"community/storage/postgres"
