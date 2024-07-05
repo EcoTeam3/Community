@@ -23,7 +23,7 @@ func NewCommunityRepo(db *sql.DB) *NewCommunity {
 
 func (C *NewCommunity) CreateGroup(group *pb.Group) (*pb.Status, error) {
 	_, err := C.Db.Exec(`INSERT INTO
-							Groups(name, description, createdBy)
+							Groups(name, description, created_by)
 						VALUES($1, $2, $3)`,
 		group.Name, group.Description, group.CreatedBy)
 	if err != nil {
@@ -44,7 +44,7 @@ func (C *NewCommunity) GetGroup(groupId *pb.GroupId) (*pb.Group, error) {
 	return &group, nil
 }
 
-func (C *NewCommunity) UpdateGroup(group *pb.Group) (*pb.Status, error) {
+func (C *NewCommunity) UpdateGroup(group *pb.Group) (*pb.Status, error) { // TODO
 
 	arr := []interface{}{group.GroupId}
 	var param []string
@@ -81,9 +81,7 @@ func (C *NewCommunity) UpdateGroup(group *pb.Group) (*pb.Status, error) {
 
 func (C *NewCommunity) DeleteGroup(groupId *pb.GroupId) (*pb.Status, error) {
 
-	_, err := C.Db.Exec(`UPDATE groups 
-		SET deleted_at = $1
-		Where group_id = $2`, time.Now(), groupId)
+	_, err := C.Db.Exec(`delete from groups where group_id = $1`, groupId.GroupId)
 	if err != nil {
 		return &pb.Status{Status: false}, err
 	}
@@ -135,7 +133,7 @@ func (C *NewCommunity) JoinGroupUser(IDs *pb.JoinLeave) (*pb.Status, error) {
       $2,
       $3,
       $4)
-    `, IDs.GroupId, IDs.UserId, IDs.Role, IDs.JoinedAt)
+    `, IDs.GroupId, IDs.UserId, IDs.Role, time.Now())
 
 	if err != nil {
 		return &pb.Status{Status: false}, err
@@ -197,7 +195,8 @@ func (C *NewCommunity) UpdateGroupMeber(userRole *pb.UserRole) (*pb.Status, erro
 		Status: true,
 	}, nil
 }
-////////////////////////////////////////////////////////////////////////
+
+
 func (C *NewCommunity) CreatePost(post *pb.Post) (*pb.Status, error) {
 	_, err := C.Db.Exec("INSERT INTO Posts(group_id,user_id,content,created_at) VALUES($1,$2,$3,$4)",
 		post.GroupId, post.UserId, post.Content, time.Now())
